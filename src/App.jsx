@@ -5,7 +5,7 @@ import "./App.css";
 import AuthScreen from "./components/AuthScreen";
 import MenuTercos from "./components/MenuTercos";
 import TercoVisual from "./components/TercoVisual";
-import { auth } from "./services/firebase";
+import { auth, hasFirebaseConfig } from "./services/firebase";
 
 /**
  * 🔧 AJUSTE AQUI conforme seu textos.js
@@ -45,6 +45,20 @@ function safeSave(payload) {
 }
 
 export default function App() {
+  if (!hasFirebaseConfig) {
+    return (
+      <div className="app-root">
+        <div className="bg-orb bg-orb--a" />
+        <div className="bg-orb bg-orb--b" />
+        <main className="app-shell app-shell--auth">
+          <div className="glass auth-loading">
+            Configure as variaveis do Firebase para iniciar o app.
+          </div>
+        </main>
+      </div>
+    );
+  }
+ 
   const tercos = useMemo(() => {
     if (!DATA_TERCOS || typeof DATA_TERCOS !== "object") return [];
 
