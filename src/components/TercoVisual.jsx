@@ -216,7 +216,7 @@ export default function TercoVisual({
                     <span className="rosary-bead__initials" aria-hidden="true">
                       {badges.map((u) => {
                         const isSelf = u?.uid && user?.uid && u.uid === user.uid;
-                        const text = isSelf ? getFirstName(user) : getInitials(u);
+                        const text = isSelf ? getInitials(user) : getInitials(u);
                         return (
                           <span key={u?.uid ?? text} className={`rosary-bead__badge ${isSelf ? "is-self" : ""}`}>
                             {text}
